@@ -152,14 +152,14 @@ function Division({ r }) {
           </motion.div>
         ))}
       </div>
-      <div className="table-wrap">
+      <div className="table-wrap stack">
         <table>
           <thead><tr><th>Thread</th><th>Native id</th><th>Record range</th><th>Records</th><th>Busy</th><th>Share</th></tr></thead>
           <tbody>
             {r.multi.threads.map((t) => (
               <tr key={t.thread}>
-                <td>{t.thread}</td><td>{t.native_id}</td><td>{fmt(t.range[0] + 1)}–{fmt(t.range[1])}</td>
-                <td>{fmt(t.records)}</td><td>{ms(t.busy_ms)}</td><td>{((t.records / r.records) * 100).toFixed(1)}%</td>
+                <td className="head">{t.thread}</td><td data-label="Native id">{t.native_id}</td><td data-label="Range">{fmt(t.range[0] + 1)}–{fmt(t.range[1])}</td>
+                <td data-label="Records">{fmt(t.records)}</td><td data-label="Busy">{ms(t.busy_ms)}</td><td data-label="Share">{((t.records / r.records) * 100).toFixed(1)}%</td>
               </tr>
             ))}
           </tbody>
@@ -351,14 +351,14 @@ function Tests({ load, busy }) {
         <h2>Test cases</h2>
         <p>Each case isolates one effect. Load it to run it live.</p>
       </div>
-      <div className="table-wrap panel">
+      <div className="table-wrap stack panel">
         <table>
           <thead><tr><th>Case</th><th>Records</th><th>Threads</th><th>Workload</th><th>What it shows</th><th></th></tr></thead>
           <tbody>
             {TESTS.map((t) => (
               <tr key={t.id}>
-                <td>{t.id}</td><td>{fmt(t.records)}</td><td>{t.threads}</td><td>{t.workload === 'cpu' ? 'CPU' : 'I/O'}</td><td className="wrap">{t.why}</td>
-                <td><button className="btn btn--small" disabled={busy} onClick={() => load(t)}>Run</button></td>
+                <td className="head">{t.id}</td><td data-label="Records">{fmt(t.records)}</td><td data-label="Threads">{t.threads}</td><td data-label="Workload">{t.workload === 'cpu' ? 'CPU' : 'I/O'}</td><td className="wrap full">{t.why}</td>
+                <td className="full"><button className="btn btn--small" disabled={busy} onClick={() => load(t)}>Run</button></td>
               </tr>
             ))}
           </tbody>
@@ -401,7 +401,7 @@ export default function App() {
       </main>
       <footer className="foot">
         <p className="foot__statement">One dataset, many threads, and an honest stopwatch.</p>
-        <p className="foot__meta">Sahil Karande · PRN 202501110194 · Division C · Batch C2 · Operating Systems · Assignment 1</p>
+        <p className="foot__meta">Sahil Karande · PRN 202501110194 · Division C · Batch C2 · Operating Systems · Assignment 2</p>
       </footer>
     </MotionConfig>
   )

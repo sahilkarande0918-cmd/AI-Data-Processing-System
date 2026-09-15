@@ -1,7 +1,7 @@
 # Multithreaded AI Data Processing System
 
 Operating Systems · Unit 2 (Process and Thread Management) · CO2
-Sahil Karande · PRN 202501110194 · Division C · Batch C2 · Assignment 1
+Sahil Karande · PRN 202501110194 · Division C · Batch C2 · Assignment 2
 
 ## Problem statement
 

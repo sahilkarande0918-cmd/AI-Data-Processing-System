@@ -1,14 +1,13 @@
 /* Hallmark · genre: atmospheric · macrostructure: Workbench · theme: custom · enrichment: Tier B hand-built SVG (thread lanes) · nav: N8 · footer: Ft5
  * vibe: "graphite lab bench, acid-lime signal, oscilloscope"
- * paper: oklch(16% 0.006 110) · accent: oklch(89% 0.19 122) acid-lime · display: Chakra Petch + body: Geist (+ Geist Mono)
+ * paper: oklch(0% 0 0) pitch black (user request) · accent: oklch(89% 0.19 122) acid-lime · display: Chakra Petch + body: Geist (+ Geist Mono)
  * axes: dark / geometric-sans / chromatic-other
  */
 :root {
-  --color-paper: oklch(16% 0.006 110);
-  --color-paper-2: oklch(19.5% 0.007 110);
-  --color-paper-3: oklch(24% 0.008 110);
-  --color-rule: oklch(31% 0.009 110);
-  --color-grid: oklch(21% 0.007 110);
+  --color-paper: oklch(0% 0 0);
+  --color-paper-2: oklch(13% 0.004 110);
+  --color-paper-3: oklch(18% 0.006 110);
+  --color-rule: oklch(27% 0.008 110);
   --color-ink: oklch(94% 0.012 110);
   --color-ink-2: oklch(76% 0.01 110);
   --color-ink-3: oklch(58% 0.01 110);
@@ -40,10 +39,6 @@ html.lenis, html.lenis body { height: auto; }
 body {
   margin: 0;
   background-color: var(--color-paper);
-  background-image:
-    linear-gradient(var(--color-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
-  background-size: 56px 56px;
   color: var(--color-ink);
   font: 400 var(--text-md)/1.6 var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -192,12 +187,33 @@ tbody tr:hover { background: var(--color-paper-3); }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .span-2 { grid-column: auto; }
   .why { grid-template-columns: minmax(0, 1fr); }
+  /* stacked layout: scroll parallax would push blocks into each other */
+  .hero__text, .hero__art, .concepts__col { transform: none !important; opacity: 1 !important; }
+  .hero__art { max-width: 32rem; }
 }
 @media (max-width: 640px) {
+  .nav__line { white-space: normal; line-height: 1.8; }
   .console__grid, .concepts__cols, .seg { grid-template-columns: minmax(0, 1fr); }
+  .console__grid { gap: var(--space-lg); }
+  .btn--run { width: 100%; justify-content: center; }
+  .concepts { padding-block: var(--space-2xl) var(--space-xl); }
   .concepts__col:nth-child(2) { margin-top: 0; }
+  .why { margin-top: var(--space-2xl); gap: var(--space-lg); }
+  .card { padding: var(--space-md); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .bars__row { grid-template-columns: 5.5rem minmax(0, 1fr) 5rem; gap: var(--space-xs); }
+  .bars__row { grid-template-columns: 4.5rem minmax(0, 1fr) 4.75rem; gap: var(--space-xs); font-size: var(--text-xs); }
+  .gantt__row { grid-template-columns: 4.5rem minmax(0, 1fr); }
+  .log li { white-space: normal; padding-bottom: var(--space-2xs); }
+  .foot__statement { font-size: var(--text-lg); }
+  /* tables become one card per row */
+  .stack table, .stack tbody, .stack td { display: block; }
+  .stack thead { display: none; }
+  .stack tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2xs) var(--space-md); padding: var(--space-sm); border-bottom: 1px solid var(--color-rule); }
+  .stack td { border: 0; padding: 0; white-space: normal; min-width: 0; }
+  .stack td[data-label]::before { content: attr(data-label); display: block; color: var(--color-ink-3); font-size: var(--text-xs); }
+  .stack td.head, .stack td.full { grid-column: 1 / -1; }
+  .stack td.head { color: var(--color-accent); font-weight: 500; }
+  .stack .btn--small { width: 100%; justify-content: center; margin-top: var(--space-xs); }
 }
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
